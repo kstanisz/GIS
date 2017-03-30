@@ -1,12 +1,8 @@
 package helper;
 
-import model.Graph;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class GraphInputReaderTest {
     GraphInputReader graphInputReader;
