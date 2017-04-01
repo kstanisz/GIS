@@ -22,11 +22,15 @@ public class GraphAnalyser {
         this.graphSize = inputGraph.getVertexCount();
     }
 
+    public boolean[][] getAdjacencyMatrix(){
+        return this.analyzedGraph.getAdjacencyMatrix();
+    }
+
     public int getVertexCount(){
         return this.analyzedGraph.getVertexCount();
     }
 
-    public int[] getVerticesList(){
+    public int[] getVertexList(){
         return this.analyzedGraph.getVertexLabels();
     }
 
