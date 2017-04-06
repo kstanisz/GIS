@@ -20,7 +20,7 @@ public class GraphDetailsAnalyzer {
         graphDetails.setEdgeCount(calculateEdgeCount());
         graphDetails.setDegreeDistribution(calculateDegreeDistribution());
         int[][] shortestPaths = calculateShortestPaths();
-        graphDetails.setShortestPathArray(shortestPaths);
+        graphDetails.setShortestPaths(shortestPaths);
         graphDetails.setPathAverageLength(calculatePathsAverageLength(shortestPaths));
 
         return graphDetails;

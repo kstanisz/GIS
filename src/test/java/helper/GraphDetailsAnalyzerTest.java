@@ -41,7 +41,7 @@ public class GraphDetailsAnalyzerTest {
                 {2, 1, 1, 0, 1},
                 {1, 2, 1, 1, 0}
         };
-        expectedGraphDetails.setShortestPathArray(expectedShortestPaths);
+        expectedGraphDetails.setShortestPaths(expectedShortestPaths);
         double expectedPathAverageLength = 14.0 / 10.0;
         expectedGraphDetails.setPathAverageLength(expectedPathAverageLength);
 

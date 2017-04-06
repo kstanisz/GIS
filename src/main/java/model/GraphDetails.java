@@ -8,7 +8,7 @@ public class GraphDetails {
     private int[] vertexLabels;
     private int edgeCount;
     private int[] degreeDistribution;
-    private int[][] shortestPathArray;
+    private int[][] shortestPaths;
     private double pathAverageLength;
 
     public int getVertexCount() {
@@ -43,12 +43,12 @@ public class GraphDetails {
         this.degreeDistribution = degreeDistribution;
     }
 
-    public int[][] getShortestPathArray() {
-        return shortestPathArray;
+    public int[][] getShortestPaths() {
+        return shortestPaths;
     }
 
-    public void setShortestPathArray(int[][] shortestPathArray) {
-        this.shortestPathArray = shortestPathArray;
+    public void setShortestPaths(int[][] shortestPaths) {
+        this.shortestPaths = shortestPaths;
     }
 
     public double getPathAverageLength() {
@@ -71,7 +71,7 @@ public class GraphDetails {
         if (Double.compare(that.pathAverageLength, pathAverageLength) != 0) return false;
         if (!Arrays.equals(vertexLabels, that.vertexLabels)) return false;
         if (!Arrays.equals(degreeDistribution, that.degreeDistribution)) return false;
-        return Arrays.deepEquals(shortestPathArray, that.shortestPathArray);
+        return Arrays.deepEquals(shortestPaths, that.shortestPaths);
 
     }
 
@@ -83,7 +83,7 @@ public class GraphDetails {
         result = 31 * result + Arrays.hashCode(vertexLabels);
         result = 31 * result + edgeCount;
         result = 31 * result + Arrays.hashCode(degreeDistribution);
-        result = 31 * result + Arrays.deepHashCode(shortestPathArray);
+        result = 31 * result + Arrays.deepHashCode(shortestPaths);
         temp = Double.doubleToLongBits(pathAverageLength);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         return result;
@@ -96,7 +96,7 @@ public class GraphDetails {
                 ", vertexLabels=" + Arrays.toString(vertexLabels) +
                 ", edgeCount=" + edgeCount +
                 ", degreeDistribution=" + Arrays.toString(degreeDistribution) +
-                ", shortestPathArray=" + Arrays.toString(shortestPathArray) +
+                ", shortestPaths=" + Arrays.toString(shortestPaths) +
                 ", pathAverageLength=" + pathAverageLength +
                 '}';
     }
