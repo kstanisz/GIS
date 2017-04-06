@@ -1,20 +1,27 @@
 package helper;
 
+import model.Graph;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.io.FileNotFoundException;
 
 public class GraphInputReaderTest {
     GraphInputReader graphInputReader;
 
     @Before
     public void setGraph() {
-        graphInputReader = new GraphInputReader("input.csv");
+        try {
+            graphInputReader = new GraphInputReader("input.csv");
+        } catch (FileNotFoundException e) {
+            System.err.println("File does not exist!");
+        }
     }
 
     @Test
-    public void testReadInputGraph(){
-        boolean[][] expectedMatrix = new boolean[][]{
+    public void testReadInputGraph() {
+        boolean[][] expectedAdjacencyMatrix = new boolean[][]{
                 {false, false, false, true, false},
                 {true, false, true, false, false},
                 {false, false, false, false, true},
@@ -22,9 +29,9 @@ public class GraphInputReaderTest {
                 {false, false, false, false, false}
         };
 
-        boolean [][] resultMatrix = graphInputReader.getAdjacencyMatrix();
+        Graph expectedGraph = Graph.createGraphFromAdjacencyMatrix(expectedAdjacencyMatrix);
+        Graph resultGraph = graphInputReader.createGraph();
 
-        Assert.assertArrayEquals(expectedMatrix, resultMatrix);
+        Assert.assertEquals(expectedGraph, resultGraph);
     }
-
 }
