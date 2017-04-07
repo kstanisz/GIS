@@ -37,7 +37,7 @@ public class GraphAnalyserTest {
     @Test
     public void testVertexList(){
         int[] expectedVertexList = {0,1,2,3,4};
-        Assert.assertArrayEquals(expectedVertexList, analyser.getVerticesList());
+        Assert.assertArrayEquals(expectedVertexList, analyser.getVertexList());
     }
 
     @Test
