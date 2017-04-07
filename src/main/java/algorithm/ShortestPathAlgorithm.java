@@ -7,7 +7,6 @@ import java.util.Queue;
 public class ShortestPathAlgorithm {
 
     private Graph analyzedGraph;
-    private int graphSize;
     private int startVertex;
     private int finishVertex;
     private int [] pathOrder;
@@ -16,16 +15,12 @@ public class ShortestPathAlgorithm {
 
     public ShortestPathAlgorithm(Graph graph, int startVertex, int finishVertex){
         this.analyzedGraph = graph;
-        this.graphSize = analyzedGraph.getVertexCount();
         this.startVertex = startVertex;
         this.finishVertex = finishVertex;
-        this.pathOrder = new int[this.graphSize];
-        this.visitedVertex = new boolean [this.graphSize];
+        this.pathOrder = new int[graph.getVertexCount()];
+        this.visitedVertex = new boolean [graph.getVertexCount()];
         this.vertexToVisit = new LinkedList<>();
-        initializeFiledStartValues();
-    }
 
-    private void initializeFiledStartValues(){
         this.pathOrder[startVertex] = -1;
         this.vertexToVisit.add(startVertex);
         this.visitedVertex[startVertex] = true;
@@ -63,7 +58,7 @@ public class ShortestPathAlgorithm {
 
     private Queue createAdjacencyVertexQueue (int vertex){
         Queue<Integer> adjacency = new LinkedList<>();
-        for(int i = 0; i < this.graphSize; i++)
+        for(int i = 0; i < analyzedGraph.getVertexCount(); i++)
             if(this.analyzedGraph.getAdjacencyMatrix()[vertex][i]) adjacency.add(i);
         return adjacency;
     }

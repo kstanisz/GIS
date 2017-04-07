@@ -10,14 +10,8 @@ public class GraphOutputWriter {
     public GraphOutputWriter(GraphDetails graphDetails){
         this.graphDetails = graphDetails;
     }
-<<<<<<< Updated upstream
-    
-    public void write(){
-
-=======
 
     public void write(){
         // TODO implement method.
->>>>>>> Stashed changes
     }
 }
