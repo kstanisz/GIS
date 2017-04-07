@@ -5,6 +5,11 @@ import algorithm.GraphAnalyser;
 
 public class Main {
 
+    /*
+
+    Arguments
+
+     */
     public static void main(String[] args) {
 
         GraphInputReader graphInputReader = new GraphInputReader("input.csv");

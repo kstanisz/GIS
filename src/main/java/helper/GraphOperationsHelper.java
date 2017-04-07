@@ -7,11 +7,11 @@ import java.util.List;
 public class GraphOperationsHelper {
 
     public Graph createSubgraph(Graph graph, List<Integer> vertices) {
-        int vertexCounter = vertices.size();
-        boolean[][] adjacencyMatrix = new boolean[vertexCounter][vertexCounter];
+        int vertexCount = vertices.size();
+        boolean[][] adjacencyMatrix = new boolean[vertexCount][vertexCount];
 
-        for (int i = 0; i < vertexCounter; i++) {
-            for (int j = 0; j < vertexCounter; j++) {
+        for (int i = 0; i < vertexCount; i++) {
+            for (int j = 0; j < vertexCount; j++) {
                 adjacencyMatrix[i][j] = graph.isEdge(vertices.get(i),vertices.get(j));
             }
         }
