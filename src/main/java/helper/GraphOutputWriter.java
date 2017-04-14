@@ -30,7 +30,7 @@ public class GraphOutputWriter {
     }
 
     private void openWriter() throws FileNotFoundException{
-        this.writer = new PrintWriter("report.txt");
+        this.writer = new PrintWriter("output.txt");
     }
 
     private void closeWriter(){
