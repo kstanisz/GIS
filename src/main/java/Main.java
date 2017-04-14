@@ -2,7 +2,6 @@ import algorithm.ConnectedComponentsAlgorithm;
 import helper.GraphDetailsAnalyzer;
 import helper.GraphInputReader;
 import helper.GraphOutputWriter;
-import model.ApplicationRunMode;
 import model.Graph;
 import model.GraphDetails;
 
@@ -11,6 +10,11 @@ import java.io.FileNotFoundException;
 
 public class Main {
 
+    private enum ApplicationRunMode {
+        GRAPH_FROM_FILE,
+        GRAPH_RANDOM,
+        UNDEFINED
+    }
     /*
 
     Arguments:
@@ -18,7 +22,6 @@ public class Main {
     2) Random graph: java Main -r vertices probability // java Main 3 0.2
 
      */
-
     public static void main(String[] args) {
 
         if (args.length < 2) {
