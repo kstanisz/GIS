@@ -9,38 +9,38 @@ public class ShortestPathAlgorithm {
     private Graph analyzedGraph;
     private int startVertex;
     private int finishVertex;
-    private int [] pathOrder;
-    private boolean [] visitedVertex;
-    private Queue<Integer> vertexToVisit;
+    private int [] antecedents;
+    private boolean [] visitedVertices;
+    private Queue<Integer> verticesToVisit;
 
     public ShortestPathAlgorithm(Graph graph, int startVertex, int finishVertex){
         this.analyzedGraph = graph;
         this.startVertex = startVertex;
         this.finishVertex = finishVertex;
-        this.pathOrder = new int[graph.getVertexCount()];
-        this.visitedVertex = new boolean [graph.getVertexCount()];
-        this.vertexToVisit = new LinkedList<>();
+        this.antecedents = new int[graph.getVertexCount()];
+        this.visitedVertices = new boolean [graph.getVertexCount()];
+        this.verticesToVisit = new LinkedList<>();
 
-        this.pathOrder[startVertex] = -1;
-        this.vertexToVisit.add(startVertex);
-        this.visitedVertex[startVertex] = true;
+        this.antecedents[startVertex] = -1;
+        this.verticesToVisit.add(startVertex);
+        this.visitedVertices[startVertex] = true;
     }
 
     public int findShortestPath(){
         int currentVertex;
-        while(!this.vertexToVisit.isEmpty()){
-            currentVertex = this.vertexToVisit.poll();
-            this.visitedVertex[currentVertex] = true;
+        while(!this.verticesToVisit.isEmpty()){
+            currentVertex = this.verticesToVisit.poll();
+            this.visitedVertices[currentVertex] = true;
             if(isFinishVertexVisited())
                 break;
             else
                 visitAndCheckAllAdjacentVertex(currentVertex);
         }
-        return calculatePathLength(this.pathOrder,this.startVertex,this.finishVertex);
+        return calculatePathLength(this.antecedents,this.startVertex,this.finishVertex);
     }
 
     private boolean isFinishVertexVisited(){
-        return this.visitedVertex[this.finishVertex];
+        return this.visitedVertices[this.finishVertex];
     }
 
     private void visitAndCheckAllAdjacentVertex(int vertexToCheck){
@@ -48,11 +48,13 @@ public class ShortestPathAlgorithm {
         int supportVertex;
         while(!adjacentVertex.isEmpty()){
             supportVertex = adjacentVertex.peek();
-            if(!this.visitedVertex[supportVertex]) {
-                this.pathOrder[supportVertex] = vertexToCheck;
-                this.visitedVertex[supportVertex] = true;
-                this.vertexToVisit.add(adjacentVertex.poll());
-            }else adjacentVertex.poll();
+
+            if(!this.visitedVertices[supportVertex]) {
+                this.antecedents[supportVertex] = vertexToCheck;
+                this.visitedVertices[supportVertex] = true;
+                this.verticesToVisit.add(adjacentVertex.poll());
+            }else
+                adjacentVertex.poll();
         }
     }
 
