@@ -5,7 +5,10 @@ import model.GraphDetails;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Calendar;
 
 public class GraphOutputWriter {
 
@@ -30,7 +33,10 @@ public class GraphOutputWriter {
     }
 
     private void openWriter() throws FileNotFoundException{
-        this.writer = new PrintWriter("output.txt");
+        Format formatter = new SimpleDateFormat("yyyyMMdd_HHmmss");
+        String fileName = "output_"+formatter.format(Calendar.getInstance().getTime())+".txt";
+
+        this.writer = new PrintWriter(fileName);
     }
 
     private void closeWriter(){

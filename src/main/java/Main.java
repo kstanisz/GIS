@@ -1,11 +1,13 @@
 import algorithm.ConnectedComponentsAlgorithm;
 import helper.GraphDetailsAnalyzer;
+import helper.GraphExportHelper;
 import helper.GraphInputReader;
 import helper.GraphOutputWriter;
 import model.Graph;
 import model.GraphDetails;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 
 public class Main {
@@ -40,7 +42,7 @@ public class Main {
         Graph graph;
         try {
             graph = createGraphDueToApplicationMode(mode, args);
-        } catch (IllegalArgumentException e) {
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             return;
         }
@@ -73,7 +75,7 @@ public class Main {
         }
     }
 
-    private static Graph createGraphDueToApplicationMode(ApplicationRunMode mode, String[] args) throws IllegalArgumentException {
+    private static Graph createGraphDueToApplicationMode(ApplicationRunMode mode, String[] args) throws Exception {
         if (mode.equals(ApplicationRunMode.GRAPH_FROM_FILE)) {
             String path = args[1];
             try {
@@ -92,7 +94,12 @@ public class Main {
                 throw new IllegalArgumentException("Invalid vertices or edge probability format.");
             }
 
-            return Graph.generateRandomGraph(vertices, edgeProbability);
+            Graph graph = Graph.generateRandomGraph(vertices, edgeProbability);
+
+            GraphExportHelper graphExportHelper =  new GraphExportHelper();
+            graphExportHelper.exportToCsv(graph);
+
+            return graph;
         }
     }
 }
