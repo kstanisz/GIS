@@ -53,7 +53,7 @@ public class Main {
         GraphDetailsAnalyzer graphDetailsAnalyzer = new GraphDetailsAnalyzer(connectedComponent);
         GraphDetails connectedComponentDetails = graphDetailsAnalyzer.analyze();
 
-        GraphOutputWriter outputWriter = null;
+        GraphOutputWriter outputWriter;
         try {
             outputWriter = new GraphOutputWriter(connectedComponentDetails);
         } catch (FileNotFoundException e) {
@@ -62,16 +62,17 @@ public class Main {
         }
 
         outputWriter.createReport();
-        System.out.println("Application successfully ended. Report in file: output.txt");
+        System.out.println("Application successfully ended.");
     }
 
     private static ApplicationRunMode readRunMode(String mode) {
-        if (mode.equals("-f")) {
-            return ApplicationRunMode.GRAPH_FROM_FILE;
-        } else if (mode.equals("-r")) {
-            return ApplicationRunMode.GRAPH_RANDOM;
-        } else {
-            return ApplicationRunMode.UNDEFINED;
+        switch(mode){
+            case "-f":
+                return ApplicationRunMode.GRAPH_FROM_FILE;
+            case "-r":
+                return ApplicationRunMode.GRAPH_RANDOM;
+            default:
+                return ApplicationRunMode.UNDEFINED;
         }
     }
 

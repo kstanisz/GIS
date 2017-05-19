@@ -4,6 +4,8 @@ import algorithm.ShortestPathAlgorithm;
 import model.Graph;
 import model.GraphDetails;
 
+import java.math.BigDecimal;
+
 public class GraphDetailsAnalyzer {
 
     private Graph analyzedGraph;
@@ -45,7 +47,7 @@ public class GraphDetailsAnalyzer {
         int vertexCount = analyzedGraph.getVertexCount();
         int[] degreeDistribution = new int[vertexCount];
 
-        for (int i = 0; i < vertexCount; i++){
+        for (int i = 0; i < vertexCount; i++) {
             degreeDistribution[i] = calculateVertexDegree(i, vertexCount);
         }
 
@@ -104,15 +106,16 @@ public class GraphDetailsAnalyzer {
         double sum = sumShortestPaths(shortestPaths);
         double factor = vertexCount * (vertexCount - 1);
 
-        return sum / factor;
+        BigDecimal averageLength = new BigDecimal(String.valueOf(sum / factor)).setScale(3, BigDecimal.ROUND_HALF_UP);
+        return averageLength.doubleValue();
     }
 
     private double sumShortestPaths(int[][] shortestPaths) {
         int vertexCount = analyzedGraph.getVertexCount();
         double sum = 0;
 
-        for (int i = 0; i < vertexCount; i++){
-            for (int j = 0; j < vertexCount; j++){
+        for (int i = 0; i < vertexCount; i++) {
+            for (int j = 0; j < vertexCount; j++) {
                 sum += shortestPaths[i][j];
             }
         }
