@@ -58,7 +58,7 @@ public class ShortestPathAlgorithm {
         }
     }
 
-    private Queue createAdjacencyVertexQueue (int vertex){
+    private Queue<Integer> createAdjacencyVertexQueue (int vertex){
         Queue<Integer> adjacency = new LinkedList<>();
         for(int i = 0; i < analyzedGraph.getVertexCount(); i++)
             if(this.analyzedGraph.getAdjacencyMatrix()[vertex][i]) adjacency.add(i);
