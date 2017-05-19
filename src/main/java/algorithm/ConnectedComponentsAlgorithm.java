@@ -45,7 +45,7 @@ public class ConnectedComponentsAlgorithm {
         connectedComponentSize++;
         for (int i = 0; i < graph.getVertexCount(); i++) {
             if (graph.isEdge(vertexIndex, i) && vertexConnectedComponentIndexes[i] == 0) {
-                return runDFS(graph, i, connectedComponentSize);
+                runDFS(graph, i, connectedComponentSize);
             }
         }
 
