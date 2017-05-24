@@ -39,11 +39,13 @@ public class Main {
             return;
         }
 
+        long startTime = System.currentTimeMillis();
+
         Graph graph;
         try {
             graph = createGraphDueToApplicationMode(mode, args);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println("Can't read input file. Error message: " + e.getMessage());
             return;
         }
 
@@ -53,9 +55,11 @@ public class Main {
         GraphDetailsAnalyzer graphDetailsAnalyzer = new GraphDetailsAnalyzer(connectedComponent);
         GraphDetails connectedComponentDetails = graphDetailsAnalyzer.analyze();
 
+        long endTime = System.currentTimeMillis();
+
         GraphOutputWriter outputWriter;
         try {
-            outputWriter = new GraphOutputWriter(connectedComponentDetails);
+            outputWriter = new GraphOutputWriter(connectedComponentDetails,(endTime - startTime));
         } catch (FileNotFoundException e) {
             System.out.println("Error while creating output file: "+e.getMessage());
             return;

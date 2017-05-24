@@ -14,9 +14,11 @@ public class GraphOutputWriter {
 
     private GraphDetails graphDetails;
     private PrintWriter writer;
+    private long executionTime;
 
-    public GraphOutputWriter(GraphDetails graphDetails) throws FileNotFoundException{
+    public GraphOutputWriter(GraphDetails graphDetails, Long exececutionTime) throws FileNotFoundException{
         this.graphDetails = graphDetails;
+        this.executionTime = exececutionTime;
         openWriter();
     }
 
@@ -29,6 +31,7 @@ public class GraphOutputWriter {
         printDegreeDistribution();
         printShortestWay();
         printAverageLenght();
+        printFooter();
         closeWriter();
     }
 
@@ -96,6 +99,11 @@ public class GraphOutputWriter {
     private void printModule(String header, Object value){
         this.writer.println("%" + header);
         this.writer.println(value);
+        this.writer.println();
+    }
+
+    private void printFooter(){
+        this.writer.println("%Czas dzialania programu: " + this.executionTime + " ms.");
         this.writer.println();
     }
 

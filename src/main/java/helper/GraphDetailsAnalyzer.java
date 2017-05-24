@@ -106,7 +106,13 @@ public class GraphDetailsAnalyzer {
         double sum = sumShortestPaths(shortestPaths);
         double factor = vertexCount * (vertexCount - 1);
 
-        BigDecimal averageLength = new BigDecimal(String.valueOf(sum / factor)).setScale(3, BigDecimal.ROUND_HALF_UP);
+        BigDecimal averageLength;
+        if(factor == 0){
+            averageLength =  new BigDecimal(String.valueOf(0)).setScale(3, BigDecimal.ROUND_HALF_UP);
+        }else{
+            averageLength =  new BigDecimal(String.valueOf(sum / factor)).setScale(3, BigDecimal.ROUND_HALF_UP);
+        }
+
         return averageLength.doubleValue();
     }
 
