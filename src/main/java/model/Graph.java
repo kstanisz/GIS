@@ -26,9 +26,19 @@ public class Graph {
 
         boolean[][] adjacencyMatrix = new boolean[vertices][vertices];
         for (int i = 0; i < vertices; i++) {
-            for (int j = 0; j < vertices; j++) {
+            for (int j = i; j < vertices; j++) {
                 double random = Math.random();
-                adjacencyMatrix[i][j] = random < edgeProbability;
+                if(j == i){
+                    adjacencyMatrix[i][j] = false;
+                }else{
+                    adjacencyMatrix[i][j] = random < edgeProbability;
+                }
+            }
+        }
+
+        for (int i = 0; i < vertices; i++) {
+            for (int j = 0; j < i; j++) {
+                adjacencyMatrix[i][j] = adjacencyMatrix[j][i];
             }
         }
 
