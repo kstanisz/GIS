@@ -87,6 +87,8 @@ public class Main {
                 return inputReader.createGraph();
             } catch (FileNotFoundException e) {
                 throw new IllegalArgumentException("File with specified path does not exist: " + path);
+            } catch (Exception e){
+            	throw new IllegalArgumentException("Read graph is a directed graph!");
             }
         } else {
             int vertices;
