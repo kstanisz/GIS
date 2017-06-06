@@ -23,12 +23,32 @@ public class GraphInputReader {
         this.input = new Scanner(inputFile);
     }
 
-    public Graph createGraph() {
+    public Graph createGraph() throws Exception {
         int vertexCount = countVertices();
         char[][] charsMatrix = createCharMatrix(vertexCount);
         boolean[][] adjacencyMatrix = createAdjacencyMatrix(charsMatrix, vertexCount);
 
+
+        if(!checkMatrix(adjacencyMatrix)){
+            throw new Exception();
+        }
+
         return Graph.createGraphFromAdjacencyMatrix(adjacencyMatrix);
+    }
+
+    private boolean checkMatrix(boolean[][] adjacencyMatrix){
+        boolean isSymetrical = true;
+
+        for(int i = 0; i < adjacencyMatrix.length;i++){
+            for(int j = 0; j < adjacencyMatrix.length; j++){
+                if(i!=j && adjacencyMatrix[i][j] != adjacencyMatrix[j][i]){
+                    return false;
+                }
+            }
+        }
+
+        return true;
+
     }
 
     private int countVertices() {

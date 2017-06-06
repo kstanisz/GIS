@@ -7,7 +7,6 @@ import model.Graph;
 import model.GraphDetails;
 
 import java.io.FileNotFoundException;
-import java.io.IOException;
 
 
 public class Main {
