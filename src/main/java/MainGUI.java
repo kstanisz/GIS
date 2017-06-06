@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -18,6 +19,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import algorithm.ConnectedComponentsAlgorithm;
 import helper.GraphDetailsAnalyzer;
+import helper.GraphExportHelper;
 import helper.GraphInputReader;
 import helper.GraphOutputWriter;
 import model.Graph;
@@ -68,6 +70,8 @@ public class MainGUI {
 				JFileChooser chooser = new JFileChooser();
 				String choosertitle = "Wybierz plik ze struktur¹ grafu";
 				chooser.setDialogTitle(choosertitle);
+				File workingDirectory = new File(System.getProperty("user.dir"));
+				chooser.setCurrentDirectory(workingDirectory);
 				FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV FILES", "csv");
 				chooser.setFileFilter(filter);
 
@@ -119,7 +123,19 @@ public class MainGUI {
 						return;
 					}
 
-					runAlgorithm(Graph.generateRandomGraph(vertices, edgeProbability));
+					Graph randomGraph = Graph.generateRandomGraph(vertices, edgeProbability);
+					
+		            GraphExportHelper graphExportHelper = new GraphExportHelper();
+		            try {
+						graphExportHelper.exportToCsv(randomGraph);
+					} catch (IOException e) {
+						resultsLabel.setText(
+								"B³¹d podczas eksportu grafu do pliku .csv.");
+						resultsLabel.setForeground(Color.RED);
+						return;
+					}
+		            
+					runAlgorithm(randomGraph);
 
 				} else {
 					resultsLabel.setText("Nie wybrano trybu dzia³ania programu");
@@ -160,7 +176,7 @@ public class MainGUI {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
+		frame = new JFrame("Analiza najwiêkszej spójnej sk³adowej w grafie zwyczajnym.");
 		frame.setBounds(100, 100, 501, 373);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
