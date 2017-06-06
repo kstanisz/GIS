@@ -20,7 +20,7 @@ public class GraphInputReaderTest {
     }
 
     @Test
-    public void testReadInputGraph() {
+    public void testReadInputGraph() throws Exception {
         boolean[][] expectedAdjacencyMatrix = new boolean[][]{
                 {false, false, false, true, false},
                 {true, false, true, false, false},

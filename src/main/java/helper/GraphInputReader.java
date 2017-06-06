@@ -37,7 +37,6 @@ public class GraphInputReader {
     }
 
     private boolean checkMatrix(boolean[][] adjacencyMatrix){
-        boolean isSymetrical = true;
 
         for(int i = 0; i < adjacencyMatrix.length;i++){
             for(int j = 0; j < adjacencyMatrix.length; j++){

@@ -81,23 +81,31 @@ public class MainGUI {
 		runAlgorithmBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (graphFromFileRbtn.isSelected()) {
-					if(graphFile == null){
-						resultsLabel.setText(
-								"Nie podano œcie¿ki do pliku z grafem.");
+					if (graphFile == null) {
+						resultsLabel.setText("Nie podano œcie¿ki do pliku z grafem.");
 						resultsLabel.setForeground(Color.RED);
 						return;
 					}
-					
+
 					GraphInputReader inputReader;
 					try {
 						inputReader = new GraphInputReader(graphFile);
 					} catch (FileNotFoundException e) {
-						resultsLabel.setText(
-								"Nie uda³o siê poprawnie odczytaæ pliku z grafem.");
+						resultsLabel.setText("Nie uda³o siê poprawnie odczytaæ pliku z grafem.");
 						resultsLabel.setForeground(Color.RED);
 						return;
 					}
-					runAlgorithm(inputReader.createGraph());
+
+					Graph graph;
+					try {
+						graph = inputReader.createGraph();
+					} catch (Exception e) {
+						resultsLabel.setText("Wczytany graf nie jest grafem zwyczajnym!");
+						resultsLabel.setForeground(Color.RED);
+						return;
+					}
+
+					runAlgorithm(graph);
 				} else if (randomGraphRbtn.isSelected()) {
 					int vertices;
 					double edgeProbability;
@@ -123,7 +131,7 @@ public class MainGUI {
 	}
 
 	private void runAlgorithm(Graph graph) {
-		
+
 		long startTime = System.currentTimeMillis();
 
 		ConnectedComponentsAlgorithm connectedComponentsAlgorithm = new ConnectedComponentsAlgorithm();
