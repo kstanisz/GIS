@@ -13,6 +13,10 @@ public class GraphInputReader {
     public GraphInputReader(String path) throws FileNotFoundException {
         openFile(path);
     }
+    
+    public GraphInputReader(File file) throws FileNotFoundException {
+        this.input = new Scanner(file);
+    }
 
     private void openFile(String path) throws FileNotFoundException {
         File inputFile = new File(path);
