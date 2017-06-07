@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
@@ -168,8 +169,9 @@ public class MainGUI {
 		}
 
 		outputWriter.createReport();
-		resultsLabel.setText("Program pomyœlnie zakoñczy³ swoje dzia³anie.");
-		resultsLabel.setForeground(Color.GREEN);
+		
+		resultsLabel.setText("");
+        JOptionPane.showMessageDialog(frame.getComponent(0), "Program pomyœlnie zakoñczy³ swoje dzia³anie.");
 	}
 
 	/**
