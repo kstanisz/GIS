@@ -108,7 +108,7 @@ public class MainGUI {
 						resultsLabel.setForeground(Color.RED);
 						return;
 					}
-
+					
 					runAlgorithm(graph);
 				} else if (randomGraphRbtn.isSelected()) {
 					int vertices;
@@ -134,7 +134,7 @@ public class MainGUI {
 						resultsLabel.setForeground(Color.RED);
 						return;
 					}
-		            
+					
 					runAlgorithm(randomGraph);
 
 				} else {

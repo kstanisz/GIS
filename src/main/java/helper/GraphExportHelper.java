@@ -15,7 +15,13 @@ public class GraphExportHelper {
 
     public void exportToCsv(Graph graph) throws IOException{
 
-        String fileName = "random_graph_"+getCurrentTimeInStringFormat()+".csv";
+		String directoryName = "generated_graphs";
+		File directory = new File(directoryName);
+		if (!directory.exists()) {
+			directory.mkdir();
+		}
+		
+        String fileName = directoryName + "/random_graph_"+getCurrentTimeInStringFormat()+".csv";
         PrintWriter writer = new PrintWriter(new File(fileName));
 
         int[] vertexLabels = graph.getVertexLabels();
